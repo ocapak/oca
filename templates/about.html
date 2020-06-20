@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block body %}
+    <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Hakkımda!</h4>
+        <p>ONUR CAN APAK</p>
+        <hr>
+        <p class="mb-0">2020 Haziran</p>
+      </div>
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Daha fazla bilgi için <a href="mailto:onurapak@zirvetelekom.com.tr">mail</a> atabilirsiniz.</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+     <!-- Ajax Örneği-->
+      <body>
+
+        <input type="number" id="sayi" placeholder="Makale id"> 
+        <input type="submit" id="gonder" value="Gönder"> <br><br>
+    
+        Makale Başlığı: <strong id="sonuc">-</strong>
+    
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type=text/javascript>
+    
+        $(function() {
+            $('#gonder').bind('click', function() {
+    
+                $.ajax( {
+                    url: '/hesapla',
+                    type: 'POST',
+                    data: {
+                        sayi: $('#sayi').val()
+                    },
+                    success: function ( donen_veri ) {
+                        $('#sonuc').html(donen_veri)
+                    },
+                    error: function ( donen_veri ) {
+                        $('#sonuc').html(donen_veri)
+                    }
+                } );
+    
+            });
+        });
+    
+    </script>
+    </body>
+{% endblock body %}

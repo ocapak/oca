@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<body>
+
+    <input type="number" id="sayi" placeholder="Sayı Giriniz"> 
+    <input type="submit" id="gonder" value="Gönder"> <br><br>
+
+    Sayının karesi: <strong id="sonuc">-</strong>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type=text/javascript>
+
+    $(function() {
+        $('#gonder').bind('click', function() {
+
+            $.ajax( {
+                url: '/hesapla',
+                type: 'POST',
+                data: {
+                    sayi: $('#sayi').val()
+                },
+                success: function ( donen_veri ) {
+                    $('#sonuc').html(donen_veri)
+                },
+                error: function ( donen_veri ) {
+                    $('#sonuc').html(donen_veri)
+                }
+            } );
+
+        });
+    });
+
+</script>
+</body>
+  
+{% endblock body %}
